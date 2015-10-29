@@ -1,7 +1,7 @@
 WhitelistManager = require 'meshblu-core-manager-whitelist'
 http             = require 'http'
 
-class GetSubcriptions
+class VerifyConfigureWhitelist
   constructor: ({@datastore, @whitelistManager}) ->
     @whitelistManager ?= new WhitelistManager datastore: @datastore
 
@@ -19,4 +19,4 @@ class GetSubcriptions
         code: code
         status: http.STATUS_CODES[code]
 
-module.exports = GetSubcriptions
+module.exports = VerifyConfigureWhitelist

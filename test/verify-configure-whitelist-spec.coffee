@@ -1,4 +1,4 @@
-http            = require 'http'
+http = require 'http'
 VerfiyConfigureWhitelist = require '../src/verify-configure-whitelist'
 
 describe 'VerfiyConfigureWhitelist', ->

@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-verify-configure-whitelist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Meshblu core task to verify configure whitelist",
   "main": "index.js",
   "scripts": {
