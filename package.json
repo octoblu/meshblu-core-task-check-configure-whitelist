@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-check-configure-whitelist",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Meshblu core task to check configure whitelist",
   "main": "index.js",
   "scripts": {
