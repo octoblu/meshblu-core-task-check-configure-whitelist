@@ -1,21 +1,21 @@
 {
-  "name": "meshblu-core-task-verify-configure-whitelist",
-  "version": "1.0.2",
-  "description": "Meshblu core task to verify configure whitelist",
+  "name": "meshblu-core-task-check-configure-whitelist",
+  "version": "1.0.0",
+  "description": "Meshblu core task to check configure whitelist",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha -- -R spec"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/octoblu/meshblu-core-task-verify-configure-whitelist.git"
+    "url": "git+https://github.com/octoblu/meshblu-core-task-check-configure-whitelist.git"
   },
   "author": "Octoblu Inc, <npm@octoblu.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/octoblu/meshblu-core-task-verify-configure-whitelist/issues"
+    "url": "https://github.com/octoblu/meshblu-core-task-check-configure-whitelist/issues"
   },
-  "homepage": "https://github.com/octoblu/meshblu-core-task-verify-configure-whitelist#readme",
+  "homepage": "https://github.com/octoblu/meshblu-core-task-check-configure-whitelist#readme",
   "devDependencies": {
     "chai": "^3.4.0",
     "coffee-coverage": "^0.6.3",
