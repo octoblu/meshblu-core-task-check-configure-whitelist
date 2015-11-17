@@ -10,7 +10,7 @@ class VerifyConfigureWhitelist
     @whitelistManager.canConfigure toUuid, fromUuid, (error, canConfigure) =>
       return @sendResponse responseId, 500, callback if error?
       return @sendResponse responseId, 403, callback unless canConfigure
-      @sendResponse responseId, 200, callback
+      @sendResponse responseId, 204, callback
 
   sendResponse: (responseId, code, callback) =>
     callback null,

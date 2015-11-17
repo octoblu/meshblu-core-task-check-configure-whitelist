@@ -1,12 +1,12 @@
 http = require 'http'
-VerfiyConfigureWhitelist = require '../src/verify-configure-whitelist'
+CheckConfigureWhitelist = require '../src/check-configure-whitelist'
 
-describe 'VerfiyConfigureWhitelist', ->
+describe 'CheckConfigureWhitelist', ->
   beforeEach ->
     @whitelistManager =
       canConfigure: sinon.stub()
 
-    @sut = new VerfiyConfigureWhitelist
+    @sut = new CheckConfigureWhitelist
       whitelistManager: @whitelistManager
 
   describe '->do', ->
@@ -26,11 +26,11 @@ describe 'VerfiyConfigureWhitelist', ->
       it 'should get have the responseId', ->
         expect(@newJob.metadata.responseId).to.equal 'yellow-green'
 
-      it 'should get have the status code of 200', ->
-        expect(@newJob.metadata.code).to.equal 200
+      it 'should get have the status code of 204', ->
+        expect(@newJob.metadata.code).to.equal 204
 
       it 'should get have the status of ', ->
-        expect(@newJob.metadata.status).to.equal http.STATUS_CODES[200]
+        expect(@newJob.metadata.status).to.equal http.STATUS_CODES[204]
 
     describe 'when called with a different valid job', ->
       beforeEach (done) ->
@@ -48,11 +48,11 @@ describe 'VerfiyConfigureWhitelist', ->
       it 'should get have the responseId', ->
         expect(@newJob.metadata.responseId).to.equal 'purple-green'
 
-      it 'should get have the status code of 200', ->
-        expect(@newJob.metadata.code).to.equal 200
+      it 'should get have the status code of 204', ->
+        expect(@newJob.metadata.code).to.equal 204
 
       it 'should get have the status of OK', ->
-        expect(@newJob.metadata.status).to.equal http.STATUS_CODES[200]
+        expect(@newJob.metadata.status).to.equal http.STATUS_CODES[204]
 
     describe 'when called with a job that with a device that cannot be configured', ->
       beforeEach (done) ->
