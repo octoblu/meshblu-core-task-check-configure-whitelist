@@ -2,8 +2,8 @@ WhitelistManager = require 'meshblu-core-manager-whitelist'
 http             = require 'http'
 
 class VerifyConfigureWhitelist
-  constructor: ({@datastore, @whitelistManager}) ->
-    @whitelistManager ?= new WhitelistManager datastore: @datastore
+  constructor: ({datastore, @whitelistManager, uuidAliasResolver}) ->
+    @whitelistManager ?= new WhitelistManager {datastore, uuidAliasResolver}
 
   do: (job, callback) =>
     {toUuid, fromUuid, responseId} = job.metadata
