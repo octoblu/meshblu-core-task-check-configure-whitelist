@@ -6,8 +6,9 @@ class VerifyConfigureWhitelist
     @whitelistManager ?= new WhitelistManager {datastore, uuidAliasResolver}
 
   do: (job, callback) =>
-    {toUuid, fromUuid, responseId} = job.metadata
-    @whitelistManager.canConfigure toUuid, fromUuid, (error, canConfigure) =>
+    {toUuid, fromUuid, responseId, auth} = job.metadata
+    fromUuid ?= auth.uuid
+    @whitelistManager.canConfigure {fromUuid, toUuid}, (error, canConfigure) =>
       return @sendResponse responseId, 500, callback if error?
       return @sendResponse responseId, 403, callback unless canConfigure
       @sendResponse responseId, 204, callback
