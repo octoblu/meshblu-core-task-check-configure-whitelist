@@ -1,12 +1,12 @@
 http = require 'http'
-CheckConfigureWhitelist = require '../src/check-configure-whitelist'
+CheckWhitelist = require '../'
 
-describe 'CheckConfigureWhitelist', ->
+describe 'CheckWhitelist', ->
   beforeEach ->
     @whitelistManager =
       canConfigure: sinon.stub()
 
-    @sut = new CheckConfigureWhitelist
+    @sut = new CheckWhitelist
       whitelistManager: @whitelistManager
 
   describe '->do', ->
@@ -32,24 +32,20 @@ describe 'CheckConfigureWhitelist', ->
       it 'should get have the status of ', ->
         expect(@newJob.metadata.status).to.equal http.STATUS_CODES[204]
 
-      it 'should call canConfigure with the right arguments', ->
-        expect(@whitelistManager.canConfigure).to.have.been.calledWith fromUuid: 'dim-green', toUuid: 'bright-green'
+    describe 'when called with a valid job without a fromUuid', ->
+      beforeEach (done) ->
+        @whitelistManager.canConfigure.yields null, true
+        job =
+          metadata:
+            auth:
+              uuid: 'green-blue'
+              token: 'blue-purple'
+            toUuid: 'bright-green'
+            responseId: 'yellow-green'
+        @sut.do job, (error, @newJob) => done error
 
-  describe 'when called with a job without a fromUuid', ->
-    beforeEach (done) ->
-      @whitelistManager.canConfigure.yields null, true
-      job =
-        metadata:
-          auth:
-            uuid: 'green-blue'
-            token: 'blue-purple'
-          toUuid: 'bright-green'
-          responseId: 'yellow-green'
-      @sut.do job, (error, @newJob) => done error
-
-    it 'should call canConfigure with the right arguments', ->
-      expect(@whitelistManager.canConfigure).to.have.been.calledWith fromUuid: 'green-blue', toUuid: 'bright-green'
-
+      it 'should call the whitelistmanager with the correct arguments', ->
+        expect(@whitelistManager.canConfigure).to.have.been.calledWith fromUuid: 'green-blue', toUuid: 'bright-green'
 
     describe 'when called with a different valid job', ->
       beforeEach (done) ->
@@ -73,7 +69,7 @@ describe 'CheckConfigureWhitelist', ->
       it 'should get have the status of OK', ->
         expect(@newJob.metadata.status).to.equal http.STATUS_CODES[204]
 
-    describe 'when called with a job that with a device that cannot be configured', ->
+    describe 'when called with a job that with a device that has an invalid whitelist', ->
       beforeEach (done) ->
         @whitelistManager.canConfigure.yields null, false
         job =
