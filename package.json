@@ -1,6 +1,6 @@
 {
   "name": "meshblu-core-task-check-configure-whitelist",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Meshblu core task to check configure whitelist",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
-    "meshblu-core-manager-whitelist": "^2.0.0"
+    "meshblu-core-manager-whitelist": "^3.1.0"
   }
 }
